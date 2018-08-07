@@ -23,7 +23,7 @@ const CLIENT_SECRET = '88a3673d1f8b469383fdf7bb4b6bd954';
 const authOptions = {
     url: 'https://accounts.spotify.com/api/token',
     headers: {
-        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Origin': 'https://spotify-demo-by-harrison.herokuapp.com/',
         'Origin': 'http://localhost:3000',
         'Access-Control-Request-Method': 'POST',
         'Authorization': 'Basic ' + (new Buffer(CLIENT_ID + ':' + CLIENT_SECRET).toString('base64'))
