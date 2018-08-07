@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { FormGroup, FormControl, InputGroup, Glyphicon } from 'react-bootstrap';
 import { read_cookie } from 'sfcookies';
 import SongResult from './SongResult';
+import NavBar from './NavBar';
 
 class SongSearch extends Component {
     constructor(props) {
@@ -35,6 +36,7 @@ class SongSearch extends Component {
     render() {
         return (
             <div className='App'>
+                <NavBar/>
                 <div className='App-title'>
                     Song Search
                 </div>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { read_cookie } from 'sfcookies';
+import NavBar from './NavBar';
 
 class NewRelease extends Component {
     constructor(props) {
@@ -27,6 +28,7 @@ class NewRelease extends Component {
         })
         .then(response => response.json())
         .then(json => {
+            console.log(json);
             const albums = json.albums.items;
             albums.map(album => {
                 FETCH_URL = `https://api.spotify.com/v1/albums/${album.id}`;
@@ -93,6 +95,7 @@ class NewRelease extends Component {
         const {albums} = this.state;
         return(
             <div className='App'>
+                <NavBar/>
                 <div className='App-title'>
                     New Release
                 </div>

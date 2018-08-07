@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Nav, NavItem, Navbar } from 'react-bootstrap';
 import history from '../history';
+import { read_cookie } from 'sfcookies';
 
 class NavBar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            active: history.location.pathname
+            active: history.location.pathname,
         }
     }
 
@@ -23,20 +24,23 @@ class NavBar extends Component {
                     <Nav activeKey={this.state.active}>
                         <NavItem 
                             eventKey='/newrelease' 
-                            href="/newrelease"
+                            href={(read_cookie('access_token') !== null) ? "/newrelease" : ""}
                             onClick={() => {this.setState({active: 1})}}
+                            className={(read_cookie('access_token') !== null) ? '' : 'disabled'}
                         >
                             New Release
                         </NavItem>
                         <NavItem 
                             eventKey='/artist'
-                            href="/artist"
+                            href={(read_cookie('access_token') !== null) ? "/artist" : ""}
+                            className={(read_cookie('access_token') !== null) ? '' : 'disabled'}
                         >
                             Artist Search
                         </NavItem>
                         <NavItem 
                             eventKey='/song'
-                            href="/song"
+                            href={(read_cookie('access_token') !== null) ? "/song" : ""}
+                            className={(read_cookie('access_token') !== null) ? '' : 'disabled'}
                         >
                             Song Search
                         </NavItem>

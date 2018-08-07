@@ -4,6 +4,7 @@ import { FormGroup, FormControl, InputGroup, Glyphicon } from 'react-bootstrap';
 import { read_cookie } from 'sfcookies';
 import Profile from './Profile';
 import Gallery from './Gallery';
+import NavBar from './NavBar';
 
 class ArtistSearch extends Component {
     constructor(props) {
@@ -51,6 +52,7 @@ class ArtistSearch extends Component {
     render() {
         return (
             <div className='App'>
+                <NavBar/>
                 <div className='App-title'>
                     Artist Search
                 </div>
