@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { read_cookie } from 'sfcookies';
+// import { read_cookie } from 'sfcookies';
+import Cookies from 'universal-cookie';
 import NavBar from './NavBar';
 
 class NewRelease extends Component {
@@ -14,7 +15,8 @@ class NewRelease extends Component {
     }
 
     componentWillMount(previewUrl) {
-        const accessToken = read_cookie('access_token');
+        const cookies = new Cookies();
+        const accessToken = cookies.get('access_token');
         // console.log(accessToken);
         let FETCH_URL = 'https://api.spotify.com/v1/browse/new-releases?country=TW';
         const FETCH_HEADER = new Headers({

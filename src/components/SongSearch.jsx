@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { FormGroup, FormControl, InputGroup, Glyphicon } from 'react-bootstrap';
-import { read_cookie } from 'sfcookies';
+// import { read_cookie } from 'sfcookies';
+import Cookies from 'universal-cookie';
 import SongResult from './SongResult';
 import NavBar from './NavBar';
 
@@ -14,7 +15,8 @@ class SongSearch extends Component {
     }
 
     search() {
-        const accessToken = read_cookie('access_token');
+        const cookies = new Cookies();
+        const accessToken = cookies.get('access_token');
         const BASE_URL = 'https://api.spotify.com/v1/search';
         const FETCH_URL = `${BASE_URL}?q=${this.state.query}&type=track`
         const FETCH_HEADER = new Headers({

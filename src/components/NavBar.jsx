@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Nav, NavItem, Navbar } from 'react-bootstrap';
 import history from '../history';
-import { read_cookie } from 'sfcookies';
+import Cookies from 'universal-cookie';
+// import { read_cookie } from 'sfcookies';
 
 class NavBar extends Component {
     constructor(props) {
@@ -12,6 +13,7 @@ class NavBar extends Component {
     }
 
     render() {
+        const cookies = new Cookies();
         return (
             <Navbar inverse fixedTop>
                 <Navbar.Header>
@@ -24,23 +26,22 @@ class NavBar extends Component {
                     <Nav activeKey={this.state.active}>
                         <NavItem 
                             eventKey='/newrelease' 
-                            href={(read_cookie('access_token') !== null) ? "/newrelease" : ""}
-                            onClick={() => {this.setState({active: 1})}}
-                            className={(read_cookie('access_token') !== null) ? '' : 'disabled'}
+                            href={(typeof cookies.get('access_token') !== 'undefined') ? "/newrelease" : ""}
+                            className={( typeof cookies.get('access_token') !== 'undefined') ? '' : 'disabled'}
                         >
                             New Release
                         </NavItem>
                         <NavItem 
                             eventKey='/artist'
-                            href={(read_cookie('access_token') !== null) ? "/artist" : ""}
-                            className={(read_cookie('access_token') !== null) ? '' : 'disabled'}
+                            href={(typeof cookies.get('access_token') !== 'undefined') ? "/artist" : ""}
+                            className={(typeof cookies.get('access_token') !== 'undefined') ? '' : 'disabled'}
                         >
                             Artist Search
                         </NavItem>
                         <NavItem 
                             eventKey='/song'
-                            href={(read_cookie('access_token') !== null) ? "/song" : ""}
-                            className={(read_cookie('access_token') !== null) ? '' : 'disabled'}
+                            href={(typeof cookies.get('access_token') !== 'undefined') ? "/song" : ""}
+                            className={(typeof cookies.get('access_token') !== 'undefined') ? '' : 'disabled'}
                         >
                             Song Search
                         </NavItem>

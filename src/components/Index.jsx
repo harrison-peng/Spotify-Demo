@@ -1,27 +1,34 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bake_cookie, read_cookie } from 'sfcookies';
+// import { bake_cookie, read_cookie } from 'sfcookies';
+import Cookies from 'universal-cookie';
 import '../App.css';
 import NavBar from './NavBar';
 
 class Index extends Component {
     constructor(props) {
         super(props);
+        const cookies = new Cookies();
         this.state = {
-            accessToken: read_cookie('access_token')
+            accessToken: cookies.get('access_token')
         }
     }
 
     componentDidMount() {
-        if (read_cookie('access_token') === null) {
-            const accessToken = new URLSearchParams(window.location.search).get('access_token');
+        const cookies = new Cookies();
+        const accessToken = new URLSearchParams(window.location.search).get('access_token');
+        if (typeof cookies.get('access_token') === 'undefined' && accessToken !== null) {
+            
             this.setState({ accessToken });
-            bake_cookie('access_token', accessToken);
+            cookies.set('access_token', accessToken);
+            console.log('a cookies:', cookies.get('access_token'));
         }   
     }
 
     render() {
-        console.log(read_cookie('access_token'));
+        // const cookies = new Cookies();
+        // console.log('cookies:', cookies.get('access_token'));
+        // console.log('state:', this.state.cookies);
         return (
             <div className='App'>
                 <NavBar />
@@ -30,7 +37,7 @@ class Index extends Component {
                 </div>
                 <br/>
                 {
-                    this.state.accessToken !== null
+                    typeof this.state.accessToken !== 'undefined'
                         ?
                         <div>
                             <div
@@ -79,7 +86,8 @@ class Index extends Component {
                         :
                         <div>
                             <a
-                                href='https://spotify-demo-backend.herokuapp.com/login'
+                                // href='https://spotify-demo-backend.herokuapp.com/login'
+                                href='http://localhost:8888/login'
                             >
                                 <button
                                     className='btn btn-primary'
