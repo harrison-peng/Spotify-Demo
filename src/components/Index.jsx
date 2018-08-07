@@ -86,8 +86,8 @@ class Index extends Component {
                         :
                         <div>
                             <a
-                                // href='https://spotify-demo-backend.herokuapp.com/login'
-                                href='http://localhost:8888/login'
+                                href='https://spotify-demo-backend.herokuapp.com/login'
+                                // href='http://localhost:8888/login'
                             >
                                 <button
                                     className='btn btn-primary'
