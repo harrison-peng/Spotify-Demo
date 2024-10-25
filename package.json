@@ -12,7 +12,7 @@
     "react-scripts": "5.0.1",
     "redux": "^4.0.0",
     "request": "^2.87.0",
-    "universal-cookie": "^2.2.0"
+    "universal-cookie": "^7.2.1"
   },
   "scripts": {
     "start": "react-scripts start",
